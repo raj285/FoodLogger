@@ -1,14 +1,19 @@
+//importing
 const express = require("express");
 const dotenv = require("dotenv");
 const { main } = require("./config/database.js");
 const morgan=require('morgan');
 const entryRouter=require('./routes/entry.js');
+const cookieParser = require("cookie-parser");
+// middlewares
 main();
 const app = express();
 dotenv.config();
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(cookieParser());
 app.use('/',entryRouter);
+// linking
 let PORT = Number(process.env.PORT) || 8080;
 app.listen(PORT, () => {
   try {
