@@ -5,6 +5,7 @@ const { main } = require("./config/database.js");
 const morgan=require('morgan');
 const entryRouter=require('./routes/entry.js');
 const cookieParser = require("cookie-parser");
+const profileRouter = require("./routes/profile.js");
 // middlewares
 main();
 const app = express();
@@ -13,6 +14,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/',entryRouter);
+app.use('/',profileRouter);
 // linking
 let PORT = Number(process.env.PORT) || 8080;
 app.listen(PORT, () => {
