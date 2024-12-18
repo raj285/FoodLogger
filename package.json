@@ -1,0 +1,17 @@
+{
+  "name": "foodlogger",
+  "version": "1.0.0",
+  "description": "Food logging and organic food commerce website",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon src/app.js"
+  },
+  "author": "Nishant Goswami",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.1",
+    "morgan": "^1.10.0"
+  }
+}
