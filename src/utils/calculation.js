@@ -1,0 +1,2 @@
+const NutrionalCalculation = (nutrionalInformationPerCent,quantity) => {
+};
