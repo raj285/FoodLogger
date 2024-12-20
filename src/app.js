@@ -6,6 +6,7 @@ const morgan=require('morgan');
 const entryRouter=require('./routes/entry.js');
 const cookieParser = require("cookie-parser");
 const profileRouter = require("./routes/profile.js");
+const foodLogRouter = require("./routes/foodLog.js");
 // middlewares
 main();
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/',entryRouter);
 app.use('/',profileRouter);
+app.use('/',foodLogRouter);
 // linking
 let PORT = Number(process.env.PORT) || 8080;
 app.listen(PORT, () => {

@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const nutrientSchema = new mongoose.Schema(
   {
+    userId:{
+      type:String,
+      required:true,
+    }, 
     calories: {
       type: Number,
       required: true,

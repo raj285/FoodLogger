@@ -5,12 +5,15 @@ const foodItemSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      unique:true,
     },
     foodWeight: {
       type: Number,
+      default: 0,
     },
-    FoodVolume: {
+    foodVolume: {
       type: Number,
+      default: 0,
     },
     calories: {
       type: Number,
