@@ -171,11 +171,12 @@ foodLogRouter.post("/dairyEntry", async (req, res) => {
         return quantity;
       }
     }
-    const updateFoodLogData=new foodLogModel({
-      foodName:nutrionalInformationPerCent.name,
-      foodWeight:calculation(nutrionalInformationPerCent.foodWeight),
-      FoodVolume:calculation(nutrionalInformationPerCent.FoodVolume),
-    })
+    const updateFoodLogData = new foodLogModel({
+      userId: userId,
+      foodName: nutrionalInformationPerCent.name,
+      foodWeight: calculation(nutrionalInformationPerCent.foodWeight),
+      FoodVolume: calculation(nutrionalInformationPerCent.FoodVolume),
+    });
     await updateFoodLogData.save();
     res.send("Your food logged succesfully")
   } catch (error) {

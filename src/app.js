@@ -7,6 +7,7 @@ const entryRouter=require('./routes/entry.js');
 const cookieParser = require("cookie-parser");
 const profileRouter = require("./routes/profile.js");
 const foodLogRouter = require("./routes/foodLog.js");
+const trendsRouter = require("./routes/trends.js");
 // middlewares
 main();
 const app = express();
@@ -17,6 +18,7 @@ app.use(cookieParser());
 app.use('/',entryRouter);
 app.use('/',profileRouter);
 app.use('/',foodLogRouter);
+app.use('/',trendsRouter);
 // linking
 let PORT = Number(process.env.PORT) || 8080;
 app.listen(PORT, () => {

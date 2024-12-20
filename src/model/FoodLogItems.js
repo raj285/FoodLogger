@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const foodLogSchema = new mongoose.Schema(
   {
+    userId: {
+      type: String,
+      required: true,
+    },
     foodName: {
       type: String,
       required: true,
