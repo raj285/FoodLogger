@@ -44,6 +44,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["Male", "Female", "Other"],
     },
+    admin:{
+      type:Number,
+      required:true,
+      enum:[0,1],
+    },
   },
   { timestamps: true }
 );

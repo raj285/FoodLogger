@@ -3,7 +3,6 @@ const trendsRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { foodLogModel } = require("../model/FoodLogItems");
 const { Nutrients } = require("../model/Nutrients");
-const { foodItemsModel } = require("../model/foodItems");
 trendsRouter.get("/trends",async (req,res)=>{
     try {
         const token = req.cookies.token;
@@ -11,8 +10,7 @@ trendsRouter.get("/trends",async (req,res)=>{
         const {startDate,endDate}=req.body;
         const foodLogData=await foodLogModel.find({userId,createdAt:{$gte:startDate,$lte:endDate}});
         const nutrientsData=await Nutrients.find({userId,createdAt:{$gte:startDate,$lte:endDate}});
-        console.log(nutrientsData)
-        res.send(nutrientsData);
+        res.send(nutrientsData+foodLogData);
     } catch (error) {
         res.send("Something Went Wrong "+error+" !!!!!");
     }
