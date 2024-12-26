@@ -4,6 +4,7 @@ import Header from "./components/Navbar";
 import MainContent from "./components/MainContent";
 import "./components/Sidebar";
 import Sidebar from "./components/Sidebar";
+
 function App() {
   return (
     <>
@@ -21,3 +22,6 @@ function App() {
 }
 
 export default App;
+
+
+

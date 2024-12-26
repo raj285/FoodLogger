@@ -3,7 +3,7 @@ import imageicon from'../assets/icon.png'
 function Header() {
   return (
     <>
-      <div className=" flex justify-between items-center bg-cyan-200">
+      <div className=" flex justify-between items-center bg-cyan-200 rounded-lg">
         <div className='flex items-center'>
           <img className=" size-24" src={imageicon} alt="ICON is here" />
           <p >Welcome to FoodLog</p>
