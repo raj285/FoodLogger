@@ -23,7 +23,7 @@ entryRouter.post("/signup", async (req, res) => {
   }
 });
 //login
-entryRouter.get("/login", async (req, res) => {
+entryRouter.post("/login", async (req, res) => {
   try {
     let { emailId, password } = req.body;
     const findByEmail = await User.findOne({ emailId });
@@ -43,7 +43,7 @@ entryRouter.get("/login", async (req, res) => {
     res.cookie("token", token);
     res.send("logged In successfully");
   } catch (error) {
-    res.status(404).send(`something went wrong: ${error}`);
+    res.status(404).send(`${error}`);
   }
 });
 //logout

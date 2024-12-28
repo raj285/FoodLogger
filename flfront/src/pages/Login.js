@@ -1,29 +1,34 @@
 import React, { useState } from "react";
 import icon from "../assets/icon.png";
-import { Link } from "react-router";
+import { Link} from "react-router";
 import toast from "react-hot-toast";
+import axios from "axios";
+import { useNavigate } from "react-router";
 const Login = () => {
-    const [emailId, setemailId] = useState(null);
-    const [password, setpassword] = useState(null);
-    const loginFunctionality=async ()=>{
-        if(!emailId || !password){
-            toast.error("please fill EmailId and Password");
-            return;
-        }
-        try {
-            await fetch("http://localhost:5000/api/login", {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ emailId, password }),
-            });
-                        
-        } catch (error) {
-            toast.error("OOPS!!! something went wrong " + error);
-        }
-
+  let navigate=useNavigate();
+  const [emailId, setemailId] = useState();
+  const [password, setpassword] = useState();
+  const loginFunctionality = async (e) => {
+    if (!emailId || !password) {
+      toast.error("please fill EmailId and Password");
+      return;
     }
+
+    try {
+      const res = await axios.post(`http://localhost:8080/login`, {
+        emailId,
+        password,
+      });
+      if (res.status === 200) {
+        toast.success(res.data);
+        navigate("/dashboard");
+      } else if (res.status === 404) {
+        toast.error(res.data);
+      }
+    } catch (error) {
+      toast.error("OOPS!!! something went wrong " + error.response.data);
+    }
+  };
   return (
     <div>
       <div className="flex justify-around bg-fuchsia-950">
@@ -40,9 +45,11 @@ const Login = () => {
             className="w-full "
             type="emailId"
             placeholder="Your emailIdId Here"
-            value={emailId} onChange={(e)=>{
-                setemailId(e.target.value)
+            value={emailId}
+            onChange={(e) => {
+              setemailId(e.target.value);
             }}
+            required
           />
           <p className="p-5 flex justify-center ">password</p>
           <input
@@ -50,14 +57,20 @@ const Login = () => {
             type="password"
             placeholder="Enter your password here"
             value={password}
-            onChange={(e)=>{
-                setpassword(e.target.value);
+            onChange={(e) => {
+              setpassword(e.target.value);
             }}
+            required
           />
           {/* here we have to add one possword visualiser */}
           <br />
           <div className="flex justify-center p-6">
-            <button className="bg-green-800 rounded p-3 px-12 " onClick={loginFunctionality} >LOGIN</button>
+            <button
+              className="bg-green-800 rounded p-3 px-12 "
+              onClick={loginFunctionality}
+            >
+              LOGIN
+            </button>
           </div>
           <br />
           <div className="flex justify-center">

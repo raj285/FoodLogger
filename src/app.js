@@ -8,10 +8,12 @@ const cookieParser = require("cookie-parser");
 const profileRouter = require("./routes/profile.js");
 const foodLogRouter = require("./routes/foodLog.js");
 const trendsRouter = require("./routes/trends.js");
+const cors =require("cors");
 // middlewares
 main();
 const app = express();
 dotenv.config();
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());

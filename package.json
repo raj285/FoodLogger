@@ -4,13 +4,17 @@
   "description": "Food logging and organic food commerce website",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon src/app.js"
+    "start": "nodemon src/app.js",
+    "front":"npm start --prefix ./flfront",
+    "dev": "concurrently \"npm run start\" \"npm run front\""
   },
   "author": "Nishant Goswami",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "concurrently": "^9.1.1",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",

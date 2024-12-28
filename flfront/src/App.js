@@ -6,6 +6,9 @@ import "./components/Sidebar";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Mainpage from "./pages/Mainpage";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+
 function App() {
   return (
     <>
@@ -28,6 +31,8 @@ function App() {
               </>
             }
           />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </>
