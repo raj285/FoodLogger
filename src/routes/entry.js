@@ -11,15 +11,16 @@ entryRouter.post("/signup", async (req, res) => {
     let data = new User(req.body);
     const { emailId } = data;
     if (await User.findOne({ emailId })) {
-      res.send("User already exist ,Please login");
+      throw new Error("User already exist ,Please login");
     } else {
       let myPlaintextPassword = data.password;
       data.password = await bcrypt.hash(myPlaintextPassword, 12);
       await data.save();
+      console.log("data is "+data);
       res.send("signed up successfully");
     }
   } catch (error) {
-    res.send(`something went wrong : ${error}`);
+    res.status(404).send({ message: `Something went wrong: ${error.message}` });
   }
 });
 //login
