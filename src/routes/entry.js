@@ -44,6 +44,7 @@ entryRouter.post("/login", async (req, res) => {
     res.status(200).json({
       message: "logged In successfully",
       token:token,
+      firstName:findByEmail.firstName,
     });
   } catch (error) {
     res.status(404).send(`${error}`);

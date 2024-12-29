@@ -24,8 +24,15 @@ const Login = () => {
         emailId,
         password,
       });
+      console.log(res);
       if (res.status === 200) {
-        dispatch(login(res.data.token));
+        dispatch(
+          login({
+            token: res.data.token,
+            firstName: res.data.firstName,
+          })
+        );
+
         // Save the JWT token in the store
         toast.success(res.data.message);
         navigate("/dashboard");
