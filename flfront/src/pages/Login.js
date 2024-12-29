@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import icon from "../assets/icon.png";
-import { Link} from "react-router";
+import { Link } from "react-router";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import {login} from "../Utils/TokenSlice"
 const Login = () => {
-  let navigate=useNavigate();
+  let navigate = useNavigate();
   const [emailId, setemailId] = useState();
   const [password, setpassword] = useState();
+  const dispatch = useDispatch();
   const loginFunctionality = async (e) => {
+    e.preventDefault();
+    // y v r doing above?
     if (!emailId || !password) {
       toast.error("please fill EmailId and Password");
       return;
@@ -20,12 +25,15 @@ const Login = () => {
         password,
       });
       if (res.status === 200) {
-        toast.success(res.data);
+        dispatch(login(res.data.token));
+        // Save the JWT token in the store
+        toast.success(res.data.message);
         navigate("/dashboard");
       } else if (res.status === 404) {
-        toast.error(res.data);
+        toast.error(res.data.message);
       }
     } catch (error) {
+      console.log(error);
       toast.error("OOPS!!! something went wrong " + error.response.data);
     }
   };

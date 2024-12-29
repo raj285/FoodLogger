@@ -1,22 +1,22 @@
-import React from 'react'
+import React from "react";
 import Slider from "react-slick";
 const VerticalSlider = (props) => {
-    const {rtl,imageArray}=props
-    const settings = {
-      infinite: true,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      autoplay: true,
-      speed: 2000,
-      vertical: true,
+  const { rtl, imageArray } = props;
+  const settings = {
+    infinite: true,
+    slidesToShow: 10,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    vertical: true,
     //   verticalSwiping: true,
-      autoplaySpeed: 2000,
-      cssEase: "linear",
-      rtl:rtl,
-    };
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    rtl: rtl,
+  };
 
   return (
-    <div className="slider-container">
+    <div className="slider-container overflow-hidden relative h-screen w-fit flex items-center">
       <Slider {...settings}>
         <div className="h-2/6">
           <img src={imageArray[0]} alt="A beautiful sunset over the ocean" />
@@ -39,6 +39,6 @@ const VerticalSlider = (props) => {
       </Slider>
     </div>
   );
-}
+};
 
-export default VerticalSlider
+export default VerticalSlider;

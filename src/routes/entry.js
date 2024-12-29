@@ -16,7 +16,6 @@ entryRouter.post("/signup", async (req, res) => {
       let myPlaintextPassword = data.password;
       data.password = await bcrypt.hash(myPlaintextPassword, 12);
       await data.save();
-      console.log("data is "+data);
       res.send("signed up successfully");
     }
   } catch (error) {
@@ -42,7 +41,10 @@ entryRouter.post("/login", async (req, res) => {
       expiresIn: "1h",
     });
     res.cookie("token", token);
-    res.send("logged In successfully");
+    res.status(200).json({
+      message: "logged In successfully",
+      token:token,
+    });
   } catch (error) {
     res.status(404).send(`${error}`);
   }

@@ -20,10 +20,10 @@ const Mainpage = () => {
             Science-backed nutrition tracking at your fingertips
           </p>
         </div>
-        <div className="w-2/12">
+        <div className="w-2/12 h-screen flex items-center">
           <VerticalSlider rtl={true} imageArray={imageArray} />
         </div>
-        <div className="w-2/12 ">
+        <div className="w-2/12 h-screen flex items-center">
           <VerticalSlider rtl={false} imageArray={imageArray} />
         </div>
       </div>

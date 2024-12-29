@@ -8,33 +8,39 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Mainpage from "./pages/Mainpage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-
+import {Provider} from "react-redux";
+import appStore  from "./Utils/appStore";
+import PrivateRoute from "./components/PrivateRoute";
 function App() {
   return (
     <>
-      <h1 className="bg-emerald-700 text-red-600 flex justify-center">
-        कर्म सर्वमहत्त्वम् अस्ति।
-      </h1>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Mainpage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <>
-                <Header />
-                <div className="flex">
-                  <Sidebar />
-                  <MainContent />
-                </div>
-                <Footer />
-              </>
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-      </BrowserRouter>
+      <Provider store={appStore}>
+        <h1 className="bg-emerald-700 text-red-600 flex justify-center">
+          कर्म सर्वमहत्त्वम् अस्ति।
+        </h1>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Mainpage />} />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <>
+                    <Header />
+                    <div className="flex">
+                      <Sidebar />
+                      <MainContent />
+                    </div>
+                    <Footer />
+                  </>
+                </PrivateRoute>
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }

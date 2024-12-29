@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import axios from "axios";
 const Signup = () => {
-  let navigate=useNavigate();
+  let navigate = useNavigate();
   const [firstName, setfirstName] = useState();
   const [lastName, setlastName] = useState();
   const [emailId, setemailId] = useState();
@@ -44,7 +44,7 @@ const Signup = () => {
       console.log(res.data);
       if (res.status === 200) {
         toast.success(res.data);
-        navigate('/login');
+        navigate("/login");
       }
     } catch (error) {
       const errorMessage = error.response?.data?.message || "An error occurred";
