@@ -1,16 +1,17 @@
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Navbar";
-import MainContent from "./components/MainContent";
+// import MainContent from "./components/MainContent";
 import "./components/Sidebar";
 import Sidebar from "./components/Sidebar";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Mainpage from "./pages/Mainpage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import {Provider} from "react-redux";
-import appStore  from "./Utils/appStore";
+import { Provider } from "react-redux";
+import appStore from "./Utils/appStore";
 import PrivateRoute from "./components/PrivateRoute";
+import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <>
@@ -27,9 +28,9 @@ function App() {
                 <PrivateRoute>
                   <>
                     <Header />
-                    <div className="flex">
+                    <div className="flex w-screen">
                       <Sidebar />
-                      <MainContent />
+                      <Dashboard/>
                     </div>
                     <Footer />
                   </>

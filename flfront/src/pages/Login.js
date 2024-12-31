@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import {login} from "../Utils/TokenSlice"
-const Login = () => {
+const Login = () => {  
   let navigate = useNavigate();
   const [emailId, setemailId] = useState();
   const [password, setpassword] = useState();
@@ -24,7 +24,6 @@ const Login = () => {
         emailId,
         password,
       });
-      console.log(res);
       if (res.status === 200) {
         dispatch(
           login({
@@ -40,7 +39,6 @@ const Login = () => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.log(error);
       toast.error("OOPS!!! something went wrong " + error.response.data);
     }
   };
