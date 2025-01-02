@@ -19,11 +19,14 @@ trendsRouter.get("/trends", async (req, res) => {
     let userId;
     try {
       const decodedToken = jwt.verify(token, "*MARIJ9-e-9ishq#");
-      userId = decodedToken.userId;
+      // console.log(decodedToken)
+      userId = decodedToken._id;
     } catch (err) {
       return res.status(401).json({ message: "Invalid or expired token." });
     }
-
+    // console.log(token);
+    // console.log(startDate + " and " + endDate);
+    // console.log(userId);
     // Validate the presence of startDate and endDate
     if (!startDate || !endDate) {
       return res
@@ -166,7 +169,16 @@ trendsRouter.get("/trends", async (req, res) => {
         ] += element.nutrients.Lipids[Object.keys(element.nutrients.Lipids)[i]];
       }
     });
-    res.status(200).send({ nutrientsData, foodLogData, weightData });
+    // console.log(nutrientsData);
+    // console.log(weightData);
+    // console.log(foodLogData);
+    // console.log(sumOfNutrientsData);
+    res.status(200).json({
+      message: "Data fetched successfully",
+      foodLogData,
+      nutrientsData: sumOfNutrientsData,
+      weightData,
+    });
   } catch (error) {
     res.status(404).send({ message: `Something went wrong: ${error.message}` });
   }
