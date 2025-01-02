@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { foodLogModel } = require("../model/FoodLogItems");
 const { Nutrients } = require("../model/Nutrients");
 const { foodItemsModel } = require("../model/foodItems");
+const { weightModel } = require("../model/Weight");
 //entering data
 foodLogRouter.post("/dairyEntry", async (req, res) => {
   try {
@@ -191,6 +192,19 @@ foodLogRouter.post("/foodItemsEntry",async(req,res)=>{
     res.send("data updated successfully");
   } catch (error) {
     res.send("OOPS....Something Went Wrong !!!! "+error);
+  }
+})
+
+foodLogRouter.post("/weightEntry",async(req,res)=>{
+  try {
+    const { weight } = req.body;
+    const token = req.cookies.token;
+    const userId = await jwt.verify(token, "*MARIJ9-e-9ishq#");
+    const data = new weightModel({ weight: weight, userId: userId });
+    const t=await data.save();
+    res.send("data updates succesfully");
+  } catch (error) {
+    res.send("OOPs .something went wrong "+error);
   }
 })
 module.exports=foodLogRouter;

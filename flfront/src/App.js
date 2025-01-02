@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import appStore from "./Utils/appStore";
 import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
+import Trends from "./pages/Trends";
 function App() {
   return (
     <>
@@ -30,7 +31,22 @@ function App() {
                     <Header />
                     <div className="flex w-screen">
                       <Sidebar />
-                      <Dashboard/>
+                      <Dashboard />
+                    </div>
+                    <Footer />
+                  </>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/trends"
+              element={
+                <PrivateRoute>
+                  <>
+                    <Header />
+                    <div className="flex w-screen">
+                      <Sidebar />
+                      <Trends/>
                     </div>
                     <Footer />
                   </>
