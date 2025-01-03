@@ -4,6 +4,76 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Chart from "react-apexcharts";
 
+const MyChart = ({ Weight }) => {
+  // Process the data for chart
+  const xAxisData = Weight
+    ? Weight.map((item) => {
+        const date = new Date(item.createdAt); // Convert string to Date object
+        return date.toLocaleDateString(); // Format the date (you can customize the format as needed)
+      })
+    : [];
+
+  const yAxisData = Weight ? Weight.map((item) => item.weight) : [];
+
+  // Chart options configuration
+  const chartOptions = {
+    chart: {
+      type: "line",
+      zoom: {
+        enabled: false, // Disable zoom
+      },
+    },
+    stroke: {
+      curve: "smooth", // Smooth line curve
+      width: 3,
+      dashArray: [5, 5], // Dashed line style
+    },
+    title: {
+      text: "Weight vs Date",
+      align: "left",
+    },
+    xaxis: {
+      categories: xAxisData, // Categories for X-axis (dates)
+      title: {
+        text: "Date",
+      },
+    },
+    yaxis: {
+      title: {
+        text: "Weight (kg)",
+      },
+    },
+    tooltip: {
+      enabled: true,
+    },
+    markers: {
+      size: 5,
+      hover: {
+        size: 7,
+      },
+    },
+  };
+
+  // Chart series (weight values against the dates)
+  const chartSeries = [
+    {
+      name: "Weight",
+      data: yAxisData, // Weight data for the Y-axis
+    },
+  ];
+
+  return (
+    <div>
+      <Chart
+        options={chartOptions}
+        series={chartSeries}
+        type="line"
+        height="350"
+      />
+    </div>
+  );
+};
+
 const Trends = () => {
   const [startDate, setStartDate] = useState("2024-12-15");
   const [endDate, setEndDate] = useState("2025-01-03");
@@ -28,6 +98,7 @@ const Trends = () => {
       console.log("Fetched Data:", res?.data);
       setData(res.data.nutrientsData);
       setWeight(res?.data?.weightData);
+      console.log(Weight);
       if (res.status === 200) {
         toast.success("Successfully fetched the data");
       }
@@ -41,70 +112,13 @@ const Trends = () => {
     }
   };
 
-   const chartOptions = {
-     chart: {
-       type: "line",
-       zoom: {
-         enabled: false,
-       },
-     },
-     stroke: {
-       curve: "smooth",
-       width: 3,
-       dashArray: [5, 5], // Dashed line style
-     },
-     title: {
-       text: "Dotted Line Chart Example",
-       align: "left",
-     },
-     xaxis: {
-       name: "Weight",
-       data: Weight ? Weight.map((item) => item.createdAt) : [],
-       // Replace `weight` with the correct field
-       title: {
-         text: "Months",
-       },
-     },
-     yaxis: {
-       title: {
-         text: "Values",
-       },
-     },
-     tooltip: {
-       enabled: true,
-     },
-     markers: {
-       size: 5,
-       hover: {
-         size: 7,
-       },
-     },
-   };
-
-   const chartSeries = [
-     {
-       name: "Data Series 1",
-       data: [10, 20, 15, 30, 25, 35, 20],
-     },
-     {
-       name: "Data Series 2",
-       data: [15, 25, 20, 35, 30, 40, 25],
-     },
-   ];
   return (
-    <>
-      <div>
-        <Chart
-          options={chartOptions}
-          series={chartSeries}
-          type="line"
-          height={350}
-        />
-      </div>
+    <div>
+      <MyChart Weight={Weight} />
       <button onClick={gettingData}>Click Me</button>
       <div>
         {Data === null ? (
-          `nhi mila kuchh`
+          `No data found`
         ) : (
           <>
             <div>{Data.calories}</div>
@@ -112,7 +126,7 @@ const Trends = () => {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

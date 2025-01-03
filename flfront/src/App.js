@@ -22,7 +22,6 @@ function App() {
         </h1>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Mainpage />} />
             <Route
               path="/dashboard"
               element={
@@ -38,6 +37,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="/" element={<Mainpage />} />
             <Route
               path="/trends"
               element={
@@ -46,7 +46,7 @@ function App() {
                     <Header />
                     <div className="flex w-screen">
                       <Sidebar />
-                      <Trends/>
+                      <Trends />
                     </div>
                     <Footer />
                   </>
