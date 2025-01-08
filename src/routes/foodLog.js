@@ -8,8 +8,19 @@ const { weightModel } = require("../model/Weight");
 //entering data
 foodLogRouter.post("/dairyEntry", async (req, res) => {
   try {
-    const { _id, quantity } = req.body;
-    const token = req.cookies.token;
+    const { idOfAddedFood, quantityOfFood } = req.body;
+    const _id = idOfAddedFood;
+    const quantity = quantityOfFood;
+    // const token = req.cookies.token;
+    const token=req.headers.authorization?.split(" ")[1] || req.cookies?.token;
+    console.log(token);
+    console.log("and")
+    console.log(_id);
+    console.log("and");
+    console.log(quantity);
+    if(!token){
+      throw new Error("please login first");
+    }
     const userId = await jwt.verify(token, "*MARIJ9-e-9ishq#");
     const nutrionalInformationPerCent = await foodItemsModel.findById(_id);
     if(quantity<=0){
@@ -181,7 +192,7 @@ foodLogRouter.post("/dairyEntry", async (req, res) => {
     await updateFoodLogData.save();
     res.send("Your food logged succesfully")
   } catch (error) {
-    res.send("error came in logging food data "+error);
+    res.status(404).send("error came in logging food data "+error);
   }
 });
 

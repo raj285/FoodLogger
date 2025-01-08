@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { foodLogModel } = require("../model/FoodLogItems");
 const { Nutrients } = require("../model/Nutrients");
 const { weightModel } = require("../model/Weight");
+const { foodItemsModel } = require("../model/foodItems");
 trendsRouter.get("/trends", async (req, res) => {
   try {
     const { startDate, endDate } = req.query;
@@ -108,6 +109,7 @@ trendsRouter.get("/trends", async (req, res) => {
         },
       },
     };
+    const foodData = await foodItemsModel.find();
     nutrientsData.forEach((element) => {
       sumOfNutrientsData.userId = element.userId;
       sumOfNutrientsData.calories += element.calories;
@@ -178,6 +180,18 @@ trendsRouter.get("/trends", async (req, res) => {
       foodLogData,
       nutrientsData: sumOfNutrientsData,
       weightData,
+      foodData,
+    });
+  } catch (error) {
+    res.status(404).send({ message: `Something went wrong: ${error.message}` });
+  }
+});
+trendsRouter.get("/fooddiary", async (req, res) => {
+  try {
+    const foodData = await foodItemsModel.find();
+    res.status(200).json({
+      message: "Data fetched successfully",
+      foodData,
     });
   } catch (error) {
     res.status(404).send({ message: `Something went wrong: ${error.message}` });

@@ -13,6 +13,7 @@ import appStore from "./Utils/appStore";
 import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import Trends from "./pages/Trends";
+import Diary from "./pages/Diary";
 function App() {
   return (
     <>
@@ -31,6 +32,21 @@ function App() {
                     <div className="flex w-screen">
                       <Sidebar />
                       <Dashboard />
+                    </div>
+                    <Footer />
+                  </>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/diary"
+              element={
+                <PrivateRoute>
+                  <>
+                    <Header />
+                    <div className="flex w-screen">
+                      <Sidebar />
+                      <Diary/>
                     </div>
                     <Footer />
                   </>
