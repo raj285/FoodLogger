@@ -9,9 +9,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
     <Toaster />
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    {/* removed the strict mode as it was rendering data 2 times */}
+    {/* React will intentionally render components twice during the initial mount to detect potential side effects  */}
+    {/* <React.StrictMode> */}
+    <App />
+    {/* </React.StrictMode> */}
   </>
 );
 

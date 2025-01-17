@@ -14,6 +14,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import Trends from "./pages/Trends";
 import Diary from "./pages/Diary";
+import BuyPremium from "./pages/BuyPremium";
+import OrganicFoods from "./pages/OrganicFoods";
+import SpecificOrganicFood from "./pages/SpecificOrganicFood";
 function App() {
   return (
     <>
@@ -23,6 +26,51 @@ function App() {
         </h1>
         <BrowserRouter>
           <Routes>
+            <Route
+              path="/organicFoods/:id"
+              element={
+                <PrivateRoute>
+                  <>
+                    <Header />
+                    <div className="flex w-screen">
+                      <Sidebar />
+                      <SpecificOrganicFood/>
+                    </div>
+                    <Footer />
+                  </>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/organicFoods"
+              element={
+                <PrivateRoute>
+                  <>
+                    <Header />
+                    <div className="flex w-screen">
+                      <Sidebar />
+                      <OrganicFoods />
+                    </div>
+                    <Footer />
+                  </>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/premium"
+              element={
+                <PrivateRoute>
+                  <>
+                    <Header />
+                    <div className="flex w-screen">
+                      <Sidebar />
+                      <BuyPremium />
+                    </div>
+                    <Footer />
+                  </>
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/dashboard"
               element={
@@ -46,7 +94,7 @@ function App() {
                     <Header />
                     <div className="flex w-screen">
                       <Sidebar />
-                      <Diary/>
+                      <Diary />
                     </div>
                     <Footer />
                   </>

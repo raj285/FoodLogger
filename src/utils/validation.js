@@ -1,6 +1,6 @@
 const validator = require("validator");
 const isValidSignUpData = (data) => {
-    const {
+    const { 
       firstName,
       lastName,
       emailId,

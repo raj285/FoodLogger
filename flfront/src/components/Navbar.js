@@ -26,6 +26,7 @@ navigate('/login');
             {isAuthenticated ? <>Hii {firstName}</> : <>Please Login </>}
           </button>
           <button className=" px-4">Chat with chatgpt</button>
+          <botton>Cart</botton>
           <button className=" px-4" onClick={logoutButton}>
             {isAuthenticated ? <>Logout</> : <>Login </>}
           </button>

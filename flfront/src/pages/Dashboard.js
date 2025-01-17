@@ -5,7 +5,6 @@ const Dashboard = () => {
       <div>
         <p className='text-4xl'>Your Dashboard</p>
         <div>
-          <div>Quick Add to Diary</div>
           <ul className='flex justify-evenly items-center'>
             <li><>FOOD</></li>
             <li>calorie Burnt</li>

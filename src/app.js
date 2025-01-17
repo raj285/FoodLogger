@@ -9,6 +9,8 @@ const profileRouter = require("./routes/profile.js");
 const foodLogRouter = require("./routes/foodLog.js");
 const trendsRouter = require("./routes/trends.js");
 const cors =require("cors");
+const paymentRouter = require("./routes/paymentGateway.js");
+const organicRouter = require("./routes/organic.js"); 
 // middlewares
 main();
 const app = express();
@@ -21,6 +23,9 @@ app.use('/',entryRouter);
 app.use('/',profileRouter);
 app.use('/',foodLogRouter);
 app.use('/',trendsRouter);
+app.use('/',paymentRouter);
+app.use('/',organicRouter);
+
 // linking
 let PORT = Number(process.env.PORT) || 8080;
 app.listen(PORT, () => {
