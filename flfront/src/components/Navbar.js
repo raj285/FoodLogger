@@ -3,7 +3,7 @@ import imageicon from "../assets/icon.png";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logout } from "../Utils/TokenSlice";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 function Header() {
   const dispatch=useDispatch();
   const navigate=useNavigate();
@@ -26,7 +26,7 @@ navigate('/login');
             {isAuthenticated ? <>Hii {firstName}</> : <>Please Login </>}
           </button>
           <button className=" px-4">Chat with chatgpt</button>
-          <botton>Cart</botton>
+          <Link to={"/cart"}>Cart</Link>
           <button className=" px-4" onClick={logoutButton}>
             {isAuthenticated ? <>Logout</> : <>Login </>}
           </button>
