@@ -196,15 +196,7 @@ foodLogRouter.post("/dairyEntry", async (req, res) => {
   }
 });
 
-foodLogRouter.post("/foodItemsEntry",async(req,res)=>{
-  try {
-    const data=new foodItemsModel(req.body);
-    const t=await data.save();
-    res.send("data updated successfully");
-  } catch (error) {
-    res.send("OOPS....Something Went Wrong !!!! "+error);
-  }
-})
+
 
 foodLogRouter.post("/weightEntry",async(req,res)=>{
   try {

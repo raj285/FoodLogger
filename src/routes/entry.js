@@ -38,7 +38,7 @@ entryRouter.post("/login", async (req, res) => {
       throw new Error("INVALID CREDENTIALS....enter data correctly");
     }
     const token = await jwt.sign({ _id: findByEmail._id }, "*MARIJ9-e-9ishq#", {
-      expiresIn: "1h",
+      expiresIn: "5h",
     });
     res.cookie("token", token);
     res.status(200).json({

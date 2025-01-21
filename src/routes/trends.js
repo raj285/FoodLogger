@@ -13,7 +13,7 @@ trendsRouter.get("/trends", async (req, res) => {
 
     // Check if token is missing
     if (!token) {
-      return res.status(401).json({ message: "Token is required." });
+      return res.status(401).json({ message: "Please login first" });
     }
 
     // Verify the token and extract userId

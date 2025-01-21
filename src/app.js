@@ -11,6 +11,7 @@ const trendsRouter = require("./routes/trends.js");
 const cors =require("cors");
 const paymentRouter = require("./routes/paymentGateway.js");
 const organicRouter = require("./routes/organic.js"); 
+const { AdminRouter } = require("./routes/admin.js");
 // middlewares
 main();
 const app = express();
@@ -25,7 +26,7 @@ app.use('/',foodLogRouter);
 app.use('/',trendsRouter);
 app.use('/',paymentRouter);
 app.use('/',organicRouter);
-
+app.use('/',AdminRouter);
 // linking
 let PORT = Number(process.env.PORT) || 8080;
 app.listen(PORT, () => {

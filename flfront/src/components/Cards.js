@@ -26,7 +26,8 @@ const Cards = ({
         </div>
       </div>
       <div>{weight} gram</div>
-      <div>Rate is ₹{(price / weight) * 1000}</div>      
+      <div>Rate is ₹{(price / weight) * 1000}</div>    
+        
       <Link to={`/organicFoods/${_id}`}>khrid mere ko bc</Link>
     </div>
   );

@@ -18,6 +18,7 @@ import BuyPremium from "./pages/BuyPremium";
 import OrganicFoods from "./pages/OrganicFoods";
 import SpecificOrganicFood from "./pages/SpecificOrganicFood";
 import Cart from "./pages/Cart";
+import Admin from "./pages/Admin";
 function App() {
   return (
     <>
@@ -28,6 +29,21 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route
+              path="/admin"
+              element={
+                <PrivateRoute>
+                  <>
+                    <Header />
+                    <div className="flex w-screen">
+                      <Sidebar />
+                      <Admin/>
+                    </div>
+                    <Footer />
+                  </>
+                </PrivateRoute>
+              }
+            />
+            <Route
               path="/cart"
               element={
                 <PrivateRoute>
@@ -35,7 +51,7 @@ function App() {
                     <Header />
                     <div className="flex w-screen">
                       <Sidebar />
-                      <Cart/>
+                      <Cart />
                     </div>
                     <Footer />
                   </>
