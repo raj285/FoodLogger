@@ -4,7 +4,7 @@ const BuyPremium = () => {
   return (
     
     <div>
-      
+      ghijggjgjgjg
     </div>
   )
 }

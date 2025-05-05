@@ -20,6 +20,7 @@ import SpecificOrganicFood from "./pages/SpecificOrganicFood";
 import Cart from "./pages/Cart";
 import Admin from "./pages/Admin";
 import About from "./pages/About";
+import Payment from "./pages/PaymentPage";
 function App() {
   return (
     <>
@@ -30,6 +31,21 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route
+              path="/orderPayment"
+              element={
+                <PrivateRoute>
+                  <>
+                    <Header />
+                    <div className="flex w-screen">
+                      <Sidebar />
+                      <Payment/>
+                    </div>
+                    <Footer />
+                  </>
+                </PrivateRoute>
+              }
+            />
+            <Route
               path="/about"
               element={
                 <PrivateRoute>
@@ -37,7 +53,7 @@ function App() {
                     <Header />
                     <div className="flex w-screen">
                       <Sidebar />
-                      <About/>
+                      <About />
                     </div>
                     <Footer />
                   </>

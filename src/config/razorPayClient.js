@@ -1,5 +1,6 @@
-const razorpay=require('razorpay');
-export const  instance = new Razorpay({
-  key_id: "rzp_test_djUrNu34TivVgR",
-  key_secret: "iQs0eMFWDgiQKZXmNfoaqsIm",
-});
+//connectng node server with razorpay server
+// const razorpay=require('razorpay');
+// export const instance = new razorpay({
+//   key_id: "rzp_test_FteNjl7FAYNCWg",
+//   key_secret: "JClALmhdi519vPbnpyXekCft",
+// });

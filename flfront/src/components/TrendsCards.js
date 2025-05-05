@@ -281,7 +281,7 @@ const TrendsCards = ({ startDate, endDate }) => {
             </li>
             <li className="flex justify-evenly items-center p-1">
               <p>Selenium</p>
-              <p>{selenium} mcg</p>
+              <p>{selenium.toFixed(2)} mcg</p>
               <div className="border border-gray-900 rounded-md">
                 {percentageCalculationOfNutrientsIntake(
                   totalDays,
@@ -305,7 +305,7 @@ const TrendsCards = ({ startDate, endDate }) => {
             </li>
             <li className="flex justify-evenly items-center p-1">
               <p>Zinc</p>
-              <p>{zinc} mg</p>
+              <p>{zinc.toFixed(2)} mg</p>
               <div className="border border-gray-900 rounded-md">
                 {percentageCalculationOfNutrientsIntake(totalDays, zinc, 11)} %
               </div>
