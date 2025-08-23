@@ -5,6 +5,8 @@ const { foodLogModel } = require("../model/FoodLogItems");
 const { Nutrients } = require("../model/Nutrients");
 const { weightModel } = require("../model/Weight");
 const { foodItemsModel } = require("../model/foodItems");
+
+
 trendsRouter.get("/trends", async (req, res) => {
   try {
     const { startDate, endDate } = req.query;
@@ -186,6 +188,8 @@ trendsRouter.get("/trends", async (req, res) => {
     res.status(404).send({ message: `Something went wrong: ${error.message}` });
   }
 });
+
+
 trendsRouter.get("/fooddiary", async (req, res) => {
   try {
     const foodData = await foodItemsModel.find();

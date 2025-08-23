@@ -2,6 +2,8 @@ const express = require("express");
 const profileRouter = express.Router();
 const jwt = require("jsonwebtoken");
 const { User } = require("../model/User.js");
+
+
 // getprofile
 profileRouter.get('/getProfile', async(req,res)=>{
     try {

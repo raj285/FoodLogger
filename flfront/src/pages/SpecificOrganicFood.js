@@ -23,7 +23,7 @@ const SpecificOrganicFood = () => {
   if (!foodData) {
     return <div>Loading...</div>;
   }
-
+console.log("image link is"+foodData.imagelink)
   return (
     <div>
       <img src={foodData.imagelink} alt="Photu was here" />

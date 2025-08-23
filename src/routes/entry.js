@@ -4,6 +4,7 @@ const { User } = require("../model/User.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { isValidSignUpData } = require("../utils/validation.js");
+
 // signup
 entryRouter.post("/signup", async (req, res) => {
   try {
@@ -22,6 +23,7 @@ entryRouter.post("/signup", async (req, res) => {
     res.status(404).send({ message: `Something went wrong: ${error.message}` });
   }
 });
+
 //login
 entryRouter.post("/login", async (req, res) => {
   try {
@@ -50,6 +52,7 @@ entryRouter.post("/login", async (req, res) => {
     res.status(404).send(`${error}`);
   }
 });
+
 //logout
 entryRouter.get("/logout", async (req, res) => {
   try {
