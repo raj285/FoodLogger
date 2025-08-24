@@ -14,7 +14,7 @@ const trendsRouter = require("./routes/trends.js");
 const paymentRouter = require("./routes/paymentGateway.js");
 const organicRouter = require("./routes/organic.js"); 
 const { AdminRouter } = require("./routes/admin.js");
-const { CartRouter } = require("./routes/cartRoute.js");
+const CartRouter = require("./routes/cartRoute.js");
 
 //intialising the express app
 const app = express(); 
@@ -36,7 +36,7 @@ app.use('/',trendsRouter);
 app.use('/',paymentRouter);
 app.use('/',organicRouter);
 app.use('/',AdminRouter);
-app.use('/',CartRouter);
+app.use('/cart',CartRouter);
 
 
 

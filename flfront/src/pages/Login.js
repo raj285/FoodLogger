@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import icon from "../assets/icon.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import {login} from "../Utils/TokenSlice"
-const Login = () => {  
+import { login } from "../Utils/TokenSlice";
+import { getCartData } from "../Utils/CartSlice";
+
+const Login = () => {
   let navigate = useNavigate();
-  const [emailId, setemailId] = useState();
-  const [password, setpassword] = useState();
+  const [emailId, setemailId] = useState("");
+  const [password, setpassword] = useState("");
   const dispatch = useDispatch();
+
   const loginFunctionality = async (e) => {
     e.preventDefault();
-    // y v r doing above?
     if (!emailId || !password) {
       toast.error("please fill EmailId and Password");
       return;
@@ -31,9 +32,8 @@ const Login = () => {
             firstName: res.data.firstName,
           })
         );
-
-        // Save the JWT token in the store
         toast.success(res.data.message);
+        dispatch(getCartData());
         navigate("/dashboard");
       } else if (res.status === 404) {
         toast.error(res.data.message);
@@ -42,59 +42,28 @@ const Login = () => {
       toast.error("OOPS!!! something went wrong " + error.response.data);
     }
   };
+
   return (
-    <div>
-      <div className="flex justify-around bg-fuchsia-950">
-        <img className=" size-20" src={icon} alt="icon for FoodLogger" />
-        <p className=" text-5xl text-white flex items-center">FoodLogger</p>
-      </div>
-      <div className="flex justify-center min-h-screen items-center bg-gray-500">
-        <div className="p-6 border-2 rounded shadow-2xl border-gray-900 bg-slate-100">
-          <p className="flex justify-center text-2xl p-8">
-            Welcome Back to FoodLog
-          </p>
-          <p className=" p-5 flex justify-center">emailId</p>
-          <input
-            className="w-full "
-            type="emailId"
-            placeholder="Your emailIdId Here"
-            value={emailId}
-            onChange={(e) => {
-              setemailId(e.target.value);
-            }}
-            required
-          />
-          <p className="p-5 flex justify-center ">password</p>
-          <input
-            className="w-full"
-            type="password"
-            placeholder="Enter your password here"
-            value={password}
-            onChange={(e) => {
-              setpassword(e.target.value);
-            }}
-            required
-          />
-          {/* here we have to add one possword visualiser */}
-          <br />
-          <div className="flex justify-center p-6">
-            <button
-              className="bg-green-800 rounded p-3 px-12 "
-              onClick={loginFunctionality}
-            >
-              LOGIN
-            </button>
-          </div>
-          <br />
-          <div className="flex justify-center">
-            <Link to="/forgotpassword">forgot your password</Link>
-          </div>
-          <br />
-          <div className="flex justify-center">
-            <Link to="/signup">Not a member</Link>
-          </div>
-        </div>
-      </div>
+    // Your actual JSX code goes here, for example:
+    <div className="login-container">
+      <img src={icon} alt="App Icon" />
+      <h2>Login</h2>
+      <form onSubmit={loginFunctionality}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={emailId}
+          onChange={(e) => setemailId(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setpassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
+      </form>
+      <Link to="/signup">Don't have an account? Sign up</Link>
     </div>
   );
 };

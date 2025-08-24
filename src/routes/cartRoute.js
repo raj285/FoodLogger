@@ -5,6 +5,7 @@ const {User} = require("../model/User.js");
 const {authenticateMiddleWare} = require("../middleware/auth.js");
 const { compareSync } = require("bcrypt");
 const CartRouter= express.Router();
+const {organicModel}=require("../model/organicFood.js")
 //  rout to add an item  to my  cart 
 CartRouter.post("/addToCart", authenticateMiddleWare, async (req, res) => {
   try {
@@ -44,7 +45,7 @@ CartRouter.get("/getCart", authenticateMiddleWare, async (req, res) => {
     const userId = req.user._id;
     let cart = await CartModel
       .findOne({ userId: userId });
-      console.log(cart);
+      // console.log(cart);
       cart1=await cart.populate("products.productId");
     if (!cart1) {
       return res.status(200).send({ message: "Cart is empty" });
@@ -99,5 +100,5 @@ CartRouter.delete("/deleteItem/:productId",authenticateMiddleWare,async(req,res)
   }
 });
 
-module.exports ={ CartRouter};
+module.exports =CartRouter;
    
